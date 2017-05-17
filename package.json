@@ -1,0 +1,10 @@
+{
+  "name": "CAS_P1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gloor Christian",
+  "dependencies": {
+    "finalhandler": "^0.3.6",
+    "serve-static": "^1.9.2"
+  }
+}

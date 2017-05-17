@@ -1,0 +1,35 @@
+.design1 {
+    background: white;
+    color: black;
+}
+
+.design2 {
+    background: black;
+    color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.all-filters {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sort-filter {
+    display: flex;
+}
+
+.button {
+    padding: 4px;
+    margin: 0 8px 4px 0;
+    cursor: pointer;
+    border: solid 1px;
+}
+
+.button:hover {
+    background: grey;
+}
+

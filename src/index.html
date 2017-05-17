@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+        <link rel="stylesheet" href="css/custom.css">
+    </head>
+
+    <body>
+        <div id="main" class="main">
+            <div class="header">
+                <div class="new button">create new Note</div>
+                <div>
+                    <select id="designSelect" onchange="setMainDesign()">
+                        <option value="design1">Ugly style</option>
+                        <option value="design2">Dead beat Ugly style</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="all-filters">
+                <div class="sort-filter">
+                    <div class="button" onclick="sort('finish')">By finish date</div>
+                    <div class="button">By create date</div>
+                    <div class="button">By Importance</div>
+                </div>
+                <div class="data-filter">
+                    <div class="button">Show finished</div>
+                </div>
+            </div>
+
+            <div id="resultList">
+                <div class="detail">
+                    <div class="finish-date">x1.12.2017</div>
+                    <textarea class="note-text" value="x"> some long note tex≥Ÿ#“blad bla</textarea>
+                    <div class="edit button">edit</div>
+                </div>
+
+                <div class="detail">
+                    <div class="finish-date">x1.11.2017</div>
+                    <textarea class="note-text" value="x sasdfasdkfj aosid  note text
+                    blad bla"></textarea>
+                    <div class="edit button">edit</div>
+                </div>
+            </div>
+
+        </div>
+        <script src="main.js"> </script>
+    </body>
+</html>
