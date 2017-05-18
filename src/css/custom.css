@@ -1,13 +1,3 @@
-.design1 {
-    background: white;
-    color: black;
-}
-
-.design2 {
-    background: black;
-    color: white;
-}
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -31,5 +21,28 @@
 
 .button:hover {
     background: grey;
+}
+
+.design1 {
+    background: white;
+    color: black;
+}
+
+.detail-importance .hover,
+.detail-importance :hover,
+.detail-importance .active{
+    color: blue;
+}
+
+
+.design2 {
+    background: black;
+    color: white;
+}
+
+.design2.detail-importance .hover,
+.design2.detail-importance :hover,
+.design2.detail-importance .active{
+    color: blue;
 }
 
