@@ -8,7 +8,7 @@
     <body>
         <div id="main" class="main">
             <div class="header">
-                <div class="new button">create new Note</div>
+                <a href="detail.html" class="new button">create new Note</a>
                 <div>
                     <select id="designSelect" onchange="setMainDesign()">
                         <option value="design1">Ugly style</option>
@@ -20,8 +20,8 @@
             <div class="all-filters">
                 <div class="sort-filter">
                     <div class="button" onclick="sort('finish')">By finish date</div>
-                    <div class="button">By create date</div>
-                    <div class="button">By Importance</div>
+                    <div class="button" onclick="sort('create')">By create date</div>
+                    <div class="button" onclick="sort('importance')">By Importance</div>
                 </div>
                 <div class="data-filter">
                     <div class="button">Show finished</div>
@@ -44,6 +44,8 @@
             </div>
 
         </div>
-        <script src="main.js"> </script>
+
+        <script src="https://use.fontawesome.com/e831306778.js"></script>
+        <script src="index.js"> </script>
     </body>
 </html>

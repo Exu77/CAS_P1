@@ -2,16 +2,17 @@
  * Created by Chris on 17.05.17.
  */
 "use strict";
-var mainDiv = document.getElementById('main');
-var designSelect = document.getElementById('designSelect');
-var oldClass = '';
+let mainDiv = document.getElementById('main');
+let designSelect = document.getElementById('designSelect');
+let oldClass = '';
+
 console.log('I am here')
 function sort(sortField) {
     console.log('sort the', sortField);
 }
 
 function setMainDesign() {
-    var aClass = designSelect.options[designSelect.selectedIndex].value;
+    let aClass = designSelect.options[designSelect.selectedIndex].value;
     mainDiv.attributes.class.value.replace(oldClass, aClass);
     oldClass = aClass;
     mainDiv.attributes.class.value += ' ' + aClass;
