@@ -3,6 +3,10 @@
     justify-content: space-between;
 }
 
+.std-margin {
+    margin-bottom: 4px;
+}
+
 .all-filters {
     display: flex;
     justify-content: space-between;
@@ -16,12 +20,9 @@
     padding: 4px;
     margin: 0 8px 4px 0;
     cursor: pointer;
-    border: solid 1px;
 }
 
-.button:hover {
-    background: grey;
-}
+
 
 .design1 {
     background: white;
@@ -31,7 +32,7 @@
 .detail-importance .hover,
 .detail-importance :hover,
 .detail-importance .active{
-    color: blue;
+    color: red;
 }
 
 
@@ -43,6 +44,26 @@
 .design2.detail-importance .hover,
 .design2.detail-importance :hover,
 .design2.detail-importance .active{
-    color: blue;
+    color: orange;
 }
 
+.pair {
+    display: flex;
+    margin-bottom: 4px;
+}
+
+.pair .label {
+    width: 33%;
+}
+
+.pair .input {
+    width: 45%;
+}
+
+.detail-save {
+    width: 100%
+}
+
+.detail-cancel {
+    float: right;
+}

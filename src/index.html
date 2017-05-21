@@ -5,10 +5,10 @@
         <link rel="stylesheet" href="css/custom.css">
     </head>
 
-    <body>
-        <div id="main" class="main">
+    <body class="">
+        <div class="main">
             <div class="header">
-                <a href="detail.html" class="new button">create new Note</a>
+                <button onclick="document.href = 'detail.html'" class="new button">create new Note</button>
                 <div>
                     <select id="designSelect" onchange="setMainDesign()">
                         <option value="design1">Ugly style</option>
@@ -19,12 +19,12 @@
 
             <div class="all-filters">
                 <div class="sort-filter">
-                    <div class="button" onclick="sort('finish')">By finish date</div>
-                    <div class="button" onclick="sort('create')">By create date</div>
-                    <div class="button" onclick="sort('importance')">By Importance</div>
+                    <button class="button" onclick="sort('finish')">By finish date</button>
+                    <button class="button" onclick="sort('create')">By create date</button>
+                    <button class="button" onclick="sort('importance')">By Importance</button>
                 </div>
                 <div class="data-filter">
-                    <div class="button">Show finished</div>
+                    <button class="button">Show finished</button>
                 </div>
             </div>
 
@@ -45,6 +45,7 @@
 
         </div>
 
+        <script src="./lib/jquery.js"></script>
         <script src="https://use.fontawesome.com/e831306778.js"></script>
         <script src="index.js"> </script>
     </body>
