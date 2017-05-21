@@ -8,7 +8,7 @@
     <body class="">
         <div class="main">
             <div class="header">
-                <button onclick="document.href = 'detail.html'" class="new button">create new Note</button>
+                <button onclick="location.href = 'detail.html'" class="new button">create new Note</button>
                 <div>
                     <select id="designSelect" onchange="setMainDesign()">
                         <option value="design1">Ugly style</option>
@@ -29,24 +29,15 @@
             </div>
 
             <div id="resultList">
-                <div class="detail">
-                    <div class="finish-date">x1.12.2017</div>
-                    <textarea class="note-text" value="x"> some long note tex≥Ÿ#“blad bla</textarea>
-                    <div class="edit button">edit</div>
-                </div>
-
-                <div class="detail">
-                    <div class="finish-date">x1.11.2017</div>
-                    <textarea class="note-text" value="x sasdfasdkfj aosid  note text
-                    blad bla"></textarea>
-                    <div class="edit button">edit</div>
-                </div>
             </div>
 
         </div>
 
         <script src="./lib/jquery.js"></script>
         <script src="https://use.fontawesome.com/e831306778.js"></script>
+        <script src="./lib/moment.js"></script>
+        <script src="./lib/handlebars.js"></script>
+        <script src="./templates/templates.js"></script>
         <script src="index.js"> </script>
     </body>
 </html>

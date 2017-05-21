@@ -5,16 +5,21 @@
 let mainDiv = document.getElementsByTagName('body')[0];
 let designSelect = document.getElementById('designSelect');
 let oldClass = localStorage.getItem('design');
-console.log('design at start ' + oldClass)
+let allNotes = JSON.parse(localStorage.getItem('allNotes'));
+let notes =
+const template = Handlebars.templates['listentry'];
 if (!oldClass) {
-    oldClass = 'design2';
-    console.log('settingStorage')
+    oldClass = 'design1';
     localStorage.setItem('design', oldClass);
 }
 $(document).ready(function() {
     designSelect.value = oldClass;
-    console.log( "ready!", designSelect.selectedIndex, oldClass, ' :: ', designSelect.value);
+    console.log(allNotes);
     setMainDesign();
+
+    for(let i in allNotes) {
+        $('#resultList').append(template(allNotes[i]));
+    }
 });
 
 console.log('I am here')
@@ -29,4 +34,22 @@ function setMainDesign() {
     mainDiv.attributes.class.value = actualClass + ' ' + aClass;
     console.log('setMain', actualClass, ' x ', mainDiv.attributes.class.value);
     localStorage.setItem('design', aClass);
+}
+
+function setFinished(id) {
+    const finished = $('#' + id).find('#finCheck')[0].checked;
+    let found = false;
+    for (let i = 0;i < allNotes.length && !found; i++) {
+        if (allNotes[i].id === id) {
+            found = true;
+            allNotes[i].done = finished
+            if (finished) {
+                allNotes[i].finishDate =  moment().format('YYYY-MM-DD');
+            } else {
+                allNotes[i].finishDate = null;
+            }
+        }
+    }
+
+
 }

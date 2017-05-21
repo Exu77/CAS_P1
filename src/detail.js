@@ -63,7 +63,7 @@ function checkEntries() {
         fieldNames.push('Beschreibung');
     }
 
-    if (!detailObj.finDate) {
+    if (!detailObj.targetDate) {
         fieldNames.push('Erledigt bis');
     }
 

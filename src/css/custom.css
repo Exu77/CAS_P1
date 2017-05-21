@@ -67,3 +67,30 @@
 .detail-cancel {
     float: right;
 }
+
+table.list-entry-tab {
+    width: 100%;
+}
+
+.list-entry-tab td div {
+    display: flex;
+}
+
+.list-entry-tab .col1 {
+    width: 25%;
+}
+
+.list-entry-tab td {
+    padding: 0 4px 0 4px;
+}
+
+.list-entry-tab .col3 {
+    width: 10%;
+}
+.list-entry-tab textarea {
+    width: 100%;
+}
+
+.list-entry-tab .title-importance {
+    justify-content: space-between;
+}
