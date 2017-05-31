@@ -6,25 +6,53 @@ let mainDiv = document.getElementsByTagName('body')[0];
 let designSelect = document.getElementById('designSelect');
 let oldClass = localStorage.getItem('design');
 let allNotes = JSON.parse(localStorage.getItem('allNotes'));
-let notes =
-const template = Handlebars.templates['listentry'];
+let notes = allNotes;
+let noteSortArr = new SimpleSortArray(notes);
+let showFinished = false;
+const template = Handlebars.templates['list'];
+let eleResultList;
+
 if (!oldClass) {
     oldClass = 'design1';
     localStorage.setItem('design', oldClass);
 }
 $(document).ready(function() {
+    eleResultList = $('#resultList');
     designSelect.value = oldClass;
     console.log(allNotes);
     setMainDesign();
-
-    for(let i in allNotes) {
-        $('#resultList').append(template(allNotes[i]));
-    }
+    filterFinished();
+    sort('targetDate');
+    refreshData();
 });
 
-console.log('I am here')
+function refreshData() {
+    eleResultList.empty();
+    eleResultList.append(template({notes}));
+}
+
 function sort(sortField) {
-    console.log('sort the', sortField);
+    notes = noteSortArr.sort(sortField);
+    refreshData();
+}
+
+function setShowFinished() {
+    showFinished = !showFinished;
+    filterFinished();
+}
+
+function filterFinished() {
+    if (showFinished) {
+        notes = allNotes;
+    } else {
+        notes = allNotes.filter((val) => {
+            return !val.done;
+        })
+    }
+
+    noteSortArr.aArray = notes;
+    notes = noteSortArr.sort();
+    refreshData();
 }
 
 function setMainDesign() {
@@ -40,7 +68,7 @@ function setFinished(id) {
     const finished = $('#' + id).find('#finCheck')[0].checked;
     let found = false;
     for (let i = 0;i < allNotes.length && !found; i++) {
-        if (allNotes[i].id === id) {
+        if (allNotes[i].id == id) {
             found = true;
             allNotes[i].done = finished
             if (finished) {
@@ -51,5 +79,5 @@ function setFinished(id) {
         }
     }
 
-
+    localStorage.setItem('allNotes', JSON.stringify(allNotes));
 }

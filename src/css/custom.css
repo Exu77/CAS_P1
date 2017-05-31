@@ -22,6 +22,10 @@
     cursor: pointer;
 }
 
+.note-list .finish-date {
+    padding-left: 4px;
+}
+
 
 
 .design1 {
@@ -29,9 +33,13 @@
     color: black;
 }
 
-.detail-importance .hover,
-.detail-importance :hover,
-.detail-importance .active{
+.detail-importance {
+    cursor: pointer;
+}
+
+.design1 .detail-importance .bolt.hover,
+.design1 .detail-importance .bolt:hover,
+.design1 .bolt.active{
     color: red;
 }
 
@@ -41,9 +49,9 @@
     color: white;
 }
 
-.design2.detail-importance .hover,
-.design2.detail-importance :hover,
-.design2.detail-importance .active{
+.design2 .detail-importance .bolt.hover,
+.design2 .detail-importance .bolt:hover,
+.design2 .bolt.active{
     color: orange;
 }
 

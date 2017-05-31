@@ -6,7 +6,7 @@
     </head>
 
     <body class="">
-        <div class="main">
+        <div class="main note-list">
             <div class="header">
                 <button onclick="location.href = 'detail.html'" class="new button">create new Note</button>
                 <div>
@@ -19,12 +19,13 @@
 
             <div class="all-filters">
                 <div class="sort-filter">
-                    <button class="button" onclick="sort('finish')">By finish date</button>
-                    <button class="button" onclick="sort('create')">By create date</button>
+                    <button class="button" onclick="sort('finishDate')">By finish date</button>
+                    <button class="button" onclick="sort('targetDate')">By target date</button>
                     <button class="button" onclick="sort('importance')">By Importance</button>
+                    <button class="button" onclick="sort('content')">By Content</button>
                 </div>
                 <div class="data-filter">
-                    <button class="button">Show finished</button>
+                    <button class="button" onclick="setShowFinished()">Show finished</button>
                 </div>
             </div>
 
@@ -37,7 +38,9 @@
         <script src="https://use.fontawesome.com/e831306778.js"></script>
         <script src="./lib/moment.js"></script>
         <script src="./lib/handlebars.js"></script>
+        <script src="handlebarsHelpers.js"></script>
         <script src="./templates/templates.js"></script>
+        <script src="./utils/simpleSort.js"></script>
         <script src="index.js"> </script>
     </body>
 </html>

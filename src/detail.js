@@ -33,11 +33,10 @@ function setContent() {
     detailObj.content = (this.value);
 }
 
-var eleTarget = document.getElementsByClassName('detail-finish-date');
+var eleTarget = document.getElementsByClassName('detail-target-date');
 eleTarget[0].onchange = setTargetDate;
 function setTargetDate() {
     detailObj.targetDate = (this.value);
-
 }
 
 function setBoltClass(aClass, idx) {
