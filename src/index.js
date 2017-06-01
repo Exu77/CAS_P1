@@ -7,8 +7,7 @@ let designSelect = document.getElementById('designSelect');
 let oldClass = localStorage.getItem('design');
 let allNotes = JSON.parse(localStorage.getItem('allNotes'));
 let notes = allNotes;
-let noteSortArr = new SimpleSortArray(notes);
-let showFinished = false;
+let noteSorter = new SimpleSortWithTrigFilter(allNotes, (val) => {return !val.done}, true);
 const template = Handlebars.templates['list'];
 let eleResultList;
 
@@ -21,7 +20,6 @@ $(document).ready(function() {
     designSelect.value = oldClass;
     console.log(allNotes);
     setMainDesign();
-    filterFinished();
     sort('targetDate');
     refreshData();
 });
@@ -32,26 +30,13 @@ function refreshData() {
 }
 
 function sort(sortField) {
-    notes = noteSortArr.sort(sortField);
+    notes = noteSorter.sort(sortField);
     refreshData();
 }
 
 function setShowFinished() {
-    showFinished = !showFinished;
-    filterFinished();
-}
-
-function filterFinished() {
-    if (showFinished) {
-        notes = allNotes;
-    } else {
-        notes = allNotes.filter((val) => {
-            return !val.done;
-        })
-    }
-
-    noteSortArr.aArray = notes;
-    notes = noteSortArr.sort();
+    noteSorter.useFilter = !noteSorter.useFilter;
+    notes = noteSorter.sort();
     refreshData();
 }
 

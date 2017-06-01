@@ -1,4 +1,4 @@
-class SimpleSortArray {
+class SimpleSort {
     constructor(aArray) {
         this.aArray = aArray;
         this.lastSortField = null;
@@ -45,5 +45,27 @@ class SimpleSortArray {
 
             return result;
         });
+    }
+}
+
+class SimpleSortWithTrigFilter extends SimpleSort {
+    constructor (origArray, filterFunc, useFilter) {
+        super(origArray);
+        this.useFilter = useFilter;
+        this.filterFunc = filterFunc;
+        this.origArray = origArray;
+    }
+
+    filter() {
+        if(this.useFilter) {
+            return this.origArray.filter(this.filterFunc);
+        } else {
+            return this.origArray;
+        }
+    }
+
+    sort(sortField) {
+        super.aArray = this.filter();
+        return super.sort(sortField);
     }
 }
