@@ -1,3 +1,4 @@
+'use strict'
 class SimpleSort {
     constructor(aArray) {
         this.aArray = aArray;
