@@ -3,7 +3,7 @@
 let template = Handlebars.templates['detail'];
 
 let detailObj = {
-    id: moment().format('x'),
+    id: uuid.v4(),
     title: '',
     importance: 0,
     targetDate: moment().format('YYYY-MM-DD'),
@@ -12,35 +12,31 @@ let detailObj = {
 
 
 $( document ).ready(function() {
-    setBoltClass('active', detailObj.importance);
+    const urlId = ExuUtils.getUrlParams()['id'];
+    if (urlId) {
+        const tempItem = TodoStorage.getItem(urlId);
+        if (tempItem) {
+            detailObj = tempItem;
+        }
+    }
+    console.log(ExuUtils.getUrlParams())
     document.getElementsByTagName('body')[0].attributes.class.value += ' ' + localStorage.getItem('design');
+    console.log(detailObj);
+    initAll();
 });
 
-$('#details').append(template(detailObj));
-console.log(detailObj)
-
-var eleTitle = document.getElementsByClassName('detail-title');
-eleTitle[0].onchange = setTitle;
 function setTitle() {
     console.log('set title ' + this.value)
     detailObj.title = (this.value);
 }
 
-var eleContent = document.getElementsByClassName('detail-content');
-eleContent[0].onchange = setContent;
 function setContent() {
     console.log('set content ' + this.value)
     detailObj.content = (this.value);
 }
 
-var eleTarget = document.getElementsByClassName('detail-target-date');
-eleTarget[0].onchange = setTargetDate;
-function setTargetDate() {
-    detailObj.targetDate = (this.value);
-}
-
 function setBoltClass(aClass, idx) {
-    console.log('settingBoltClsss', aClass, idx )
+    console.log('settingBoltClsss', aClass, idx)
     let bolts = $('.detail-importance').find('i');
     bolts.removeClass(aClass);
     for (let i = 0; i <= idx; i++) {
@@ -51,6 +47,27 @@ function setBoltClass(aClass, idx) {
         detailObj.importance = idx;
     }
 
+}
+
+function setTargetDate() {
+    detailObj.targetDate = (this.value);
+}
+
+function initAll() {
+    $('#details').append(template(detailObj));
+
+    var eleTitle = document.getElementsByClassName('detail-title');
+    eleTitle[0].onchange = setTitle;
+
+
+    var eleContent = document.getElementsByClassName('detail-content');
+    eleContent[0].onchange = setContent;
+
+
+    var eleTarget = document.getElementsByClassName('detail-target-date');
+    eleTarget[0].onchange = setTargetDate;
+
+    setBoltClass('active', detailObj.importance);
 }
 
 function checkEntries() {
@@ -81,19 +98,6 @@ function save() {
     console.log(detailObj);
     if (!checkEntries()) return;
 
-    // Retrieve the object from storage
-    var allNotes = JSON.parse(localStorage.getItem('allNotes'));
-    if(!allNotes) {
-        console.log('init all Notes')
-        allNotes = []
-    }
-
-    console.log('allNotes')
-    console.log(allNotes)
-    allNotes.push(detailObj);
-
-
-    // Put the object into storage
-    localStorage.setItem('allNotes', JSON.stringify(allNotes));
+    TodoStorage.addItem(detailObj);
     location.href='index.html';
 }
