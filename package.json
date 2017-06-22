@@ -4,6 +4,7 @@
   "main": "index.js",
   "author": "Gloor Christian",
   "dependencies": {
+    "express": "^4.15.3",
     "finalhandler": "^0.3.6",
     "handlebars": "^4.0.8",
     "jquery": "^3.2.1",

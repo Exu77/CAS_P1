@@ -1,16 +1,21 @@
 "use strict";
 
-var serveStatic = require("serve-static"),
-	http = require("http"),
-	finalhandler = require("finalhandler"),
-    handlebars = require("handlebars"),
+var express = require('express');
+var app = express();
+
+var http = require("http"),
     moment = require("moment");
 
-var serve = serveStatic("src/"),
-	server = http.createServer(function(req, res) {
-		var done = finalhandler(req, res);
+app.get('/', (req, res, next) => {
+    console.log('bla');
+	return res.redirect('/index.html');
 
-		serve(req, res, done);
-	});
+});
 
-server.listen(3000);
+app.use('/notes', require('./server/router/notesRoutes'));
+
+app.use(express.static('./src'));
+
+app.listen(3022, function() {
+    console.log('example listening on http://localhost:3022')
+});
