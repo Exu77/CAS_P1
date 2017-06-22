@@ -5,7 +5,7 @@
 let mainDiv = document.getElementsByTagName('body')[0];
 let designSelect = document.getElementById('designSelect');
 let oldClass = localStorage.getItem('design');
-let allNotes = JSON.parse(localStorage.getItem('allNotes'));
+let allNotes = TodoStorage.getAllItems();
 let notes = allNotes;
 let noteSorter = new SimpleSortWithTrigFilter(allNotes, (val) => {return !val.done}, true);
 const template = Handlebars.templates['list'];
@@ -66,3 +66,10 @@ function setFinished(id) {
 
     localStorage.setItem('allNotes', JSON.stringify(allNotes));
 }
+
+function modifyNote(id) {
+    console.log('modify ' + id)
+    location.href='detail.html?id=' + id;
+}
+
+
