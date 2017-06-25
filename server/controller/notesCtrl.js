@@ -1,4 +1,6 @@
-var notesStore = require('../services/notesStore');
+"use strict";
+"use_strict";
+let notesStore = require('../services/notesStore');
 
 function stdReturn(result, res) {
     res.format({
@@ -10,25 +12,32 @@ function stdReturn(result, res) {
 
 module.exports.getNote = function(req, res) {
   notesStore.get(req.body.id, (err, result) => {
-      stdReturn(result, res);
+      stdReturn(result ? result[0] : null, res);
   });
 };
 
 
 
 module.exports.getAllNote = function(req, res) {
-    let result = null;
+    const id = req.query['id'];
+    let fn = notesStore.getAll;
     console.log('getAllNote');
-    console.log(req);
-    notesStore.getAll((err, result) => {
-        stdReturn(result, res);
-    })
+    console.log(id)
+    if (id) {
+        notesStore.get(id, (err, result) => {
+            stdReturn(result, res);
+        });
+    } else {
+        notesStore.getAll((err, result) => {
+            stdReturn(result, res);
+        });
+    }
 
 };
 
 module.exports.upsertNote = function(req, res) {
     let exists = false;
-    console.log(req);
+    console.log('ctrl upsert')
     notesStore.upsert(req.body, (err, result) => {
         stdReturn(result, res);
     });

@@ -17,13 +17,13 @@
                 </div>
             </td>
             <td  class="col3" rowspan="2">
-                <button onclick="modifyNote({{id}})">Bearbeiten</button>
+                <button onclick="modifyNote('{{id}}')">Bearbeiten</button>
             </td>
         </tr>
         <tr class="col1">
             <td>
                 <div>
-                    <input id="finCheck" onchange="setFinished({{id}})" type="checkbox" {{#if done}}checked{{/if}}>
+                    <input id="finCheck" onchange="setFinished('{{id}}')" type="checkbox" {{#if done}}checked{{/if}}>
                     <div>Abgeschlossen</div>
                     {{#if done}}
                         <div class="finish-date">[{{fromNow finishDate}}]</div>

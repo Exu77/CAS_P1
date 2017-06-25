@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-hb": "handlebars -m src/templates/> src/templates/templates.js",
+    "build-hb": "handlebars -m client/templates/> client/templates/templates.js",
     "watch-hb": "nodemon -e handlebars -x \"npm run build-hb\""
   }
 }

@@ -1,6 +1,6 @@
 "use strict"
 
-class TodoStorage {
+class NotesStorage {
 
     static getAll(callBack) {
         return HttpHelper.get('/notes');

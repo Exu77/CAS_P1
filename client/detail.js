@@ -13,16 +13,20 @@ let detailObj = {
 
 $( document ).ready(function() {
     const urlId = ExuUtils.getUrlParams()['id'];
-    if (urlId) {
-        const tempItem = TodoStorage.get(urlId);
-        if (tempItem) {
-            detailObj = tempItem;
-        }
-    }
-    console.log(ExuUtils.getUrlParams())
     document.getElementsByTagName('body')[0].attributes.class.value += ' ' + localStorage.getItem('design');
-    console.log(detailObj);
-    initAll();
+    if (urlId) {
+        NotesStorage.get(urlId).then((data) => {
+            console.log('got data')
+            console.log(data)
+            if (data) {
+                detailObj = data;
+            }
+            initAll();
+        });
+    } else {
+        initAll();
+    }
+
 });
 
 function setTitle() {
@@ -98,6 +102,6 @@ function save() {
     console.log(detailObj);
     if (!checkEntries()) return;
 
-    TodoStorage.store(detailObj);
-    //location.href='index.html';
+    NotesStorage.store(detailObj);
+    location.href='index.html';
 }

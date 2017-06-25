@@ -2,12 +2,15 @@ const uuidv4 = require('uuid/v4');
 
 const db = {};
 const Datastore = require('nedb');
-db.notes = new Datastore({ filename: '../db/notes.db', autoload: true });
+db.notes = new Datastore({ filename: './server/db/notes.db', autoload: true });
+db.notes.loadDatabase();
 
 class StdCallBack {
     constructor(callback) {
         this.cb = callback;
         this.callback = (err, doc) => {
+            console.log('callback')
+            console.log(err)
             this.cb(err, doc);
         }
     }
@@ -19,7 +22,7 @@ function getAll(callBack) {
     let aCb = new StdCallBack(callBack);
     let result = null;
     console.log('getAllNote');
-    result = db.notes.find({}, aCb.callBack);
+    db.notes.find({}, aCb.callback);
 };
 
 function upsert(obj, callBack) {
@@ -35,14 +38,10 @@ function upsert(obj, callBack) {
 
     console.log('upsertNote ' + exists);
     console.log(obj);
-    getAll((err, result) => {
-        console.log('got it');
-        console.log(result)
-    });
-
     if (exists) {
         db.notes.update({id: obj.id}, obj, aCb.callback);
     } else {
+        console.log('insert')
         db.notes.insert(obj, aCb.callback);
     }
 };

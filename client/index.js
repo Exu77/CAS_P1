@@ -20,7 +20,7 @@ $(document).ready(function() {
     designSelect.value = oldClass;
     console.log(allNotes);
     setMainDesign();
-    TodoStorage.getAll((data) => {
+    NotesStorage.getAll().then((data) => {
         allNotes = data;
         notes = allNotes;
         noteSorter = new SimpleSortWithTrigFilter(allNotes, (val) => {return !val.done}, true);
@@ -30,6 +30,7 @@ $(document).ready(function() {
 });
 
 function refreshData() {
+    notes = noteSorter.sort();
     eleResultList.empty();
     eleResultList.append(template({notes}));
 }
@@ -41,7 +42,6 @@ function sort(sortField) {
 
 function setShowFinished() {
     noteSorter.useFilter = !noteSorter.useFilter;
-    notes = noteSorter.sort();
     refreshData();
 }
 
@@ -66,10 +66,11 @@ function setFinished(id) {
             } else {
                 allNotes[i].finishDate = null;
             }
+            NotesStorage.store(allNotes[i])
         }
     }
 
-    localStorage.setItem('allNotes', JSON.stringify(allNotes));
+    refreshData();
 }
 
 function modifyNote(id) {

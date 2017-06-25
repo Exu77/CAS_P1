@@ -42,6 +42,9 @@
 .design1 .bolt.active{
     color: red;
 }
+.design1 .bolt.active.hover{
+    color: orange;
+}
 
 
 .design2 {
