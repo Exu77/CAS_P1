@@ -3,7 +3,7 @@
 let template = Handlebars.templates['detail'];
 
 let detailObj = {
-    id: uuid.v4(),
+    id: null,
     title: '',
     importance: 0,
     targetDate: moment().format('YYYY-MM-DD'),
@@ -14,7 +14,7 @@ let detailObj = {
 $( document ).ready(function() {
     const urlId = ExuUtils.getUrlParams()['id'];
     if (urlId) {
-        const tempItem = TodoStorage.getItem(urlId);
+        const tempItem = TodoStorage.get(urlId);
         if (tempItem) {
             detailObj = tempItem;
         }
@@ -98,6 +98,6 @@ function save() {
     console.log(detailObj);
     if (!checkEntries()) return;
 
-    TodoStorage.addItem(detailObj);
-    location.href='index.html';
+    TodoStorage.store(detailObj);
+    //location.href='index.html';
 }

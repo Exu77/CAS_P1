@@ -5,9 +5,9 @@
 let mainDiv = document.getElementsByTagName('body')[0];
 let designSelect = document.getElementById('designSelect');
 let oldClass = localStorage.getItem('design');
-let allNotes = TodoStorage.getAllItems();
+let allNotes = null;
 let notes = allNotes;
-let noteSorter = new SimpleSortWithTrigFilter(allNotes, (val) => {return !val.done}, true);
+let noteSorter = null;
 const template = Handlebars.templates['list'];
 let eleResultList;
 
@@ -20,8 +20,13 @@ $(document).ready(function() {
     designSelect.value = oldClass;
     console.log(allNotes);
     setMainDesign();
-    sort('targetDate');
-    refreshData();
+    TodoStorage.getAll((data) => {
+        allNotes = data;
+        notes = allNotes;
+        noteSorter = new SimpleSortWithTrigFilter(allNotes, (val) => {return !val.done}, true);
+        sort('targetDate');
+        refreshData();
+    });
 });
 
 function refreshData() {
