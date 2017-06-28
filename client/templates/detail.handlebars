@@ -11,20 +11,20 @@
 <div class="pair">
     <div class="label">Wichtigkeit</div>
     <div class="detail-importance">
-        <i class="fa fa-bolt bolt" aria-hidden="true" onclick="setBoltClass('active', 0)"
-           onmouseover="setBoltClass('hover', 0)" onmouseleave="setBoltClass('hover', -1)"></i>
-        <i class="fa fa-bolt bolt"a ria-hidden="true" onclick="setBoltClass('active', 1)"
-           onmouseover="setBoltClass('hover', 1)" onmouseleave="setBoltClass('hover', -1)"></i>
-        <i class="fa fa-bolt bolt" aria-hidden="true" onclick="setBoltClass('active', 2)"
-           onmouseover="setBoltClass('hover', 2)" onmouseleave="setBoltClass('hover', -1)"></i>
-        <i class="fa fa-bolt bolt" aria-hidden="true" onclick="setBoltClass('active', 3)"
-           onmouseover="setBoltClass('hover', 3)" onmouseleave="setBoltClass('hover', -1)"></i>
-        <i class="fa fa-bolt bolt" aria-hidden="true" onclick="setBoltClass('active', 4)"
-           onmouseover="setBoltClass('hover', 4)" onmouseleave="setBoltClass('hover', -1)"></i>
+        <i class="fa fa-bolt bolt" aria-hidden="true" onclick="detailView.setBoltClass('active', 0)"
+           onmouseover="detailView.setBoltClass('hover', 0)" onmouseleave="detailView.setBoltClass('hover', -1)"></i>
+        <i class="fa fa-bolt bolt"a ria-hidden="true" onclick="detailView.setBoltClass('active', 1)"
+           onmouseover="detailView.setBoltClass('hover', 1)" onmouseleave="detailView.setBoltClass('hover', -1)"></i>
+        <i class="fa fa-bolt bolt" aria-hidden="true" onclick="detailView.setBoltClass('active', 2)"
+           onmouseover="detailView.setBoltClass('hover', 2)" onmouseleave="detailView.setBoltClass('hover', -1)"></i>
+        <i class="fa fa-bolt bolt" aria-hidden="true" onclick="detailView.setBoltClass('active', 3)"
+           onmouseover="detailView.setBoltClass('hover', 3)" onmouseleave="detailView.setBoltClass('hover', -1)"></i>
+        <i class="fa fa-bolt bolt" aria-hidden="true" onclick="detailView.setBoltClass('active', 4)"
+           onmouseover="detailView.setBoltClass('hover', 4)" onmouseleave="detailView.setBoltClass('hover', -1)"></i>
     </div>
 </div>
 
 <div class="pair">
     <div class="label">Erledigt bis</div>
-    <input class="input detail-target-date" type="date" value="{{targetDate}}">
+    <input class="input detail-target-date" type="datetime-local" value="{{inputDate targetDate}}">
 </div>

@@ -9,8 +9,6 @@ class StdCallBack {
     constructor(callback) {
         this.cb = callback;
         this.callback = (err, doc) => {
-            console.log('callback')
-            console.log(err)
             this.cb(err, doc);
         }
     }
@@ -19,7 +17,6 @@ class StdCallBack {
 function getAll(callBack) {
     let aCb = new StdCallBack(callBack);
     let result = null;
-    console.log('getAllNote');
     db.notes.find({}, aCb.callback);
 };
 
@@ -34,12 +31,9 @@ function upsert(obj, callBack) {
         }
     }
 
-    console.log('upsertNote ' + exists);
-    console.log(obj);
     if (exists) {
         db.notes.update({id: obj.id}, obj, aCb.callback);
     } else {
-        console.log('insert')
         db.notes.insert(obj, aCb.callback);
     }
 };
@@ -48,13 +42,9 @@ function upsert(obj, callBack) {
 
 function get(id, callBack) {
     let aCb = new StdCallBack(callBack);
-    console.log('getNotexxx ' + id);
     const bla = {id};
-    console.log(bla)
 
     db.notes.find({id}, (err, result) => {
-        console.log('result')
-        console.log(result)
         callBack(err, result ? result[0] : null);
     });
 
@@ -62,8 +52,6 @@ function get(id, callBack) {
 
 function remove (id, callBack) {
     let aCb = new StdCallBack(callBack);
-    console.log('deleteNote');
-    console.log(req);
     db.notes.remove({id}, stdCallBack(err, anzRem, aCb.callback));
 };
 

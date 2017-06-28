@@ -71,7 +71,7 @@ body, button, input, select {
 }
 
 .design2 .bolt.active{
-    color: yellow;
+    color: gold;
 }
 
 .design2 .list-entry-tab,
@@ -81,8 +81,9 @@ body, button, input, select {
 
 table.list-entry-tab {
     width: 100%;
-    border: black solid 1px;
-    margin: 8px 0;
+    border: black solid 2px;
+    margin: 24px 0;
+    padding: 12px;
 }
 
 .pair {
@@ -114,6 +115,10 @@ textarea {
     overflow: auto;
     resize: both;
     font-size: 16px;
+}
+
+.list-entry-tab {
+    margin: 12px;
 }
 
 .list-entry-tab td div {

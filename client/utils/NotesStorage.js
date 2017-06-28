@@ -11,8 +11,6 @@ class NotesStorage {
     }
 
     static store(aItem) {
-        console.log('store')
-        console.log(aItem)
         return HttpHelper.post('/notes', aItem);
     }
 }

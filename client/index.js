@@ -18,7 +18,6 @@ if (!oldClass) {
 $(document).ready(function() {
     eleResultList = $('#resultList');
     designSelect.value = oldClass;
-    console.log(allNotes);
     setMainDesign();
     NotesStorage.getAll().then((data) => {
         allNotes = data;
@@ -37,7 +36,6 @@ function refreshData() {
     notes = noteSorter.sort();
     eleResultList.empty();
     eleResultList.append(template({notes}));
-    setListButton();
 }
 
 function sort(sortField) {
@@ -55,7 +53,6 @@ function setMainDesign() {
     let actualClass = mainDiv.attributes.class.value.replace(oldClass, '');
     oldClass = aClass;
     mainDiv.attributes.class.value = actualClass + ' ' + aClass;
-    console.log('setMain', actualClass, ' x ', mainDiv.attributes.class.value);
     localStorage.setItem('design', aClass);
 }
 
@@ -67,7 +64,7 @@ function setFinished(id) {
             found = true;
             allNotes[i].done = finished
             if (finished) {
-                allNotes[i].finishDate =  moment().format('YYYY-MM-DD');
+                allNotes[i].finishDate =  moment();
             } else {
                 allNotes[i].finishDate = null;
             }
@@ -79,7 +76,6 @@ function setFinished(id) {
 }
 
 function modifyNote(id, e) {
-    console.log('modify ' + id)
     location.href='detail.html?id=' + id;
 }
 

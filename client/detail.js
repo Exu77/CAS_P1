@@ -1,107 +1,122 @@
 "use strict";
 
-let template = Handlebars.templates['detail'];
+class Note {
+    constructor(id, title, importance, targetDate, createDate) {
+        this.id = id || null;
+        this.title = title || '';
+        this.importance = importance || 0;
+        this.targetDate = targetDate || ExuUtils.getEndOfDayMoment();
+        this.createDate = createDate || moment();
+    }
+}
 
-let detailObj = {
-    id: null,
-    title: '',
-    importance: 0,
-    targetDate: moment().format('YYYY-MM-DD'),
-    createDate: moment().format('YYYY-MM-DD')
-};
-
-
-$( document ).ready(function() {
-    const urlId = ExuUtils.getUrlParams()['id'];
-    document.getElementsByTagName('body')[0].attributes.class.value += ' ' + localStorage.getItem('design');
-    if (urlId) {
-        NotesStorage.get(urlId).then((data) => {
-            console.log('got data')
-            console.log(data)
-            if (data) {
-                detailObj = data;
-            }
-            initAll();
+class DetailView {
+    constructor() {
+        this.template = Handlebars.templates['detail'];
+        $( document ).ready(() => {
+            this.eleTitle = document.getElementsByClassName('detail-title');
+            this.eleContent = document.getElementsByClassName('detail-content');
+            this.eleTarget = document.getElementsByClassName('detail-target-date');
         });
-    } else {
-        initAll();
+    };
+
+    initAll(detailObj) {
+        $('#details').append(this.template(detailObj));
+        this.setBoltClass('active', detailObj.importance);
     }
 
-});
-
-function setTitle() {
-    console.log('set title ' + this.value)
-    detailObj.title = (this.value);
-}
-
-function setContent() {
-    console.log('set content ' + this.value)
-    detailObj.content = (this.value);
-}
-
-function setBoltClass(aClass, idx) {
-    console.log('settingBoltClsss', aClass, idx)
-    let bolts = $('.detail-importance').find('i');
-    bolts.removeClass(aClass);
-    for (let i = 0; i <= idx; i++) {
-        $(bolts[i]).addClass(aClass);
+    getTitle() {
+        return this.eleTitle[0].value;
     }
 
-    if (aClass === 'active') {
-        detailObj.importance = idx;
+    getContent() {
+        return this.eleContent[0].value;
     }
 
-}
-
-function setTargetDate() {
-    detailObj.targetDate = (this.value);
-}
-
-function initAll() {
-    $('#details').append(template(detailObj));
-
-    var eleTitle = document.getElementsByClassName('detail-title');
-    eleTitle[0].onchange = setTitle;
-
-
-    var eleContent = document.getElementsByClassName('detail-content');
-    eleContent[0].onchange = setContent;
-
-
-    var eleTarget = document.getElementsByClassName('detail-target-date');
-    eleTarget[0].onchange = setTargetDate;
-
-    setBoltClass('active', detailObj.importance);
-}
-
-function checkEntries() {
-    let fieldNames = [];
-    if (!detailObj.title) {
-        fieldNames.push('Title');
-    }
-    if (!detailObj.content) {
-        fieldNames.push('Beschreibung');
+    getTargetDate() {
+        return this.eleTarget[0].value;
     }
 
-    if (!detailObj.targetDate) {
-        fieldNames.push('Erledigt bis');
+    getImportance() {
+        return this.importance;
     }
 
-    if (fieldNames.length > 0) {
-        const fldTxt = fieldNames.toString();
-        const musstFieldError = `Bitte fülle die folgenden Felder aus: ${fldTxt}`;
-        window.alert(musstFieldError);
-        return false;
+    setBoltClass(aClass, idx) {
+        let bolts = $('.detail-importance').find('i');
+        bolts.removeClass(aClass);
+        for (let i = 0; i <= idx; i++) {
+            $(bolts[i]).addClass(aClass);
+        }
+
+        if (aClass === 'active') {
+            this.importance = idx;
+        }
+    }
+}
+
+class DetailCtrl  {
+    constructor(detailView) {
+        this.detailView = detailView;
+        this.detailObj = new Note();
+
+        $( document ).ready(() => {
+            const urlId = ExuUtils.getUrlParams()['id'];
+            document.getElementsByTagName('body')[0].attributes.class.value += ' ' + localStorage.getItem('design');
+            if (urlId) {
+                NotesStorage.get(urlId).then((data) => {
+                    if (data) {
+                        this.detailObj = data;
+                    }
+                    this.detailView.initAll(this.detailObj);
+                });
+            } else {
+                this.detailView.initAll(this.detailObj);
+            }
+        });
     }
 
-    return true;
+
+
+
+    checkEntries() {
+        let fieldNames = [];
+        if (!this.detailObj.title) {
+            fieldNames.push('Title');
+        }
+        if (!this.detailObj.content) {
+            fieldNames.push('Beschreibung');
+        }
+
+        if (!this.detailObj.targetDate) {
+            fieldNames.push('Erledigt bis');
+        }
+
+        if (fieldNames.length > 0) {
+            const fldTxt = fieldNames.toString();
+            const musstFieldError = `Bitte fülle die folgenden Felder aus: ${fldTxt}`;
+            window.alert(musstFieldError);
+            return false;
+        }
+
+        return true;
+    }
+
+    updateObjFromView () {
+        this.detailObj.title      = this.detailView.getTitle();
+        this.detailObj.content    = this.detailView.getContent();
+        this.detailObj.targetDate = this.detailView.getTargetDate();
+        this.detailObj.importance = this.detailView.getImportance();
+    }
+
+    save() {
+        this.updateObjFromView();
+        if (!this.checkEntries()) return;
+
+        NotesStorage.store(this.detailObj);
+        location.href='index.html';
+    }
 }
 
-function save() {
-    console.log('checking it');
-    console.log(detailObj);
-    if (!checkEntries()) return;
+const detailView = new DetailView();
+const detailCtrl = new DetailCtrl(detailView);
 
-    NotesStorage.store(detailObj);
-    location.href='index.html';
-}

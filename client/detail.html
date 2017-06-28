@@ -8,7 +8,7 @@
 <body class="">
     <div id="details">
     </div>
-    <button class="std-margin detail-save" onclick="save()">Speichern</button>
+    <button class="std-margin detail-save" onclick="detailCtrl.save()">Speichern</button>
     <button class="std-margin detail-cancel" onclick="location.href='index.html'" class="">Abbrechen</button>
 
     <script src="./lib/jquery.js"></script>
@@ -16,6 +16,7 @@
     <script src="./lib/handlebars.js"></script>
     <script src="./templates/templates.js"></script>
     <script src="utils/NotesStorage.js"></script>
+    <script src="utils/handlebarsHelpers.js"></script>
     <script src="utils/httpHelper.js"></script>
     <script src="utils/utils.js"></script>
     <script src="http://wzrd.in/standalone/uuid@latest"></script>

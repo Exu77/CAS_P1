@@ -12,4 +12,10 @@ class ExuUtils {
 
         return result;
     }
+
+    static getEndOfDayMoment(aMoment) {
+        const result =  moment(aMoment).endOf('day');
+        console.log(result.format('DD-MM-YYYY HH:mm:ss'));
+        return result;
+    }
 }

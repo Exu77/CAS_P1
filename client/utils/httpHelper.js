@@ -27,9 +27,6 @@ class HttpHelper {
             httpObj['data'] =  JSON.stringify(data);
         }
 
-        console.log('http Req')
-        console.log(httpObj)
-
         return $.ajax(httpObj);
     }
 }
