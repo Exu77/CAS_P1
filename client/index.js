@@ -29,10 +29,15 @@ $(document).ready(function() {
     });
 });
 
+function setListButton() {
+
+}
+
 function refreshData() {
     notes = noteSorter.sort();
     eleResultList.empty();
     eleResultList.append(template({notes}));
+    setListButton();
 }
 
 function sort(sortField) {
@@ -73,7 +78,7 @@ function setFinished(id) {
     refreshData();
 }
 
-function modifyNote(id) {
+function modifyNote(id, e) {
     console.log('modify ' + id)
     location.href='detail.html?id=' + id;
 }

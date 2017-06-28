@@ -1,3 +1,9 @@
+
+
+body, button, input, select {
+    font-size: 16px;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -17,9 +23,14 @@
 }
 
 .button {
+    font-size: 16px;
     padding: 4px;
     margin: 0 8px 4px 0;
     cursor: pointer;
+}
+
+.button.left {
+    margin: 0;
 }
 
 .note-list .finish-date {
@@ -37,11 +48,12 @@
     cursor: pointer;
 }
 
-.design1 .detail-importance .bolt.hover,
-.design1 .detail-importance .bolt:hover,
 .design1 .bolt.active{
     color: red;
 }
+
+.design1 .detail-importance .bolt.hover,
+.design1 .detail-importance .bolt:hover,
 .design1 .bolt.active.hover{
     color: orange;
 }
@@ -56,6 +68,21 @@
 .design2 .detail-importance .bolt:hover,
 .design2 .bolt.active{
     color: orange;
+}
+
+.design2 .bolt.active{
+    color: yellow;
+}
+
+.design2 .list-entry-tab,
+.design2 .list-content {
+    border-color: white;
+}
+
+table.list-entry-tab {
+    width: 100%;
+    border: black solid 1px;
+    margin: 8px 0;
 }
 
 .pair {
@@ -79,8 +106,14 @@
     float: right;
 }
 
-table.list-entry-tab {
-    width: 100%;
+.detail-content {
+    height: 110px;
+}
+
+textarea {
+    overflow: auto;
+    resize: both;
+    font-size: 16px;
 }
 
 .list-entry-tab td div {
@@ -104,4 +137,12 @@ table.list-entry-tab {
 
 .list-entry-tab .title-importance {
     justify-content: space-between;
+}
+
+.list-content {
+    white-space: pre-wrap;
+    padding: 4px;
+    margin: 4px 0;
+    border: 1px solid black;
+
 }

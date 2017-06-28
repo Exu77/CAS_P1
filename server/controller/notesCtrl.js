@@ -11,9 +11,10 @@ function stdReturn(result, res) {
 }
 
 module.exports.getNote = function(req, res) {
-  notesStore.get(req.body.id, (err, result) => {
-      stdReturn(result ? result[0] : null, res);
-  });
+    console.log('getNote ' + req.params.id);
+    notesStore.get(req.params.id, (err, result) => {
+        stdReturn(result, res);
+    });
 };
 
 

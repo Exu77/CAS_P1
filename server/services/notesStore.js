@@ -14,8 +14,6 @@ class StdCallBack {
             this.cb(err, doc);
         }
     }
-
-
 }
 
 function getAll(callBack) {
@@ -50,8 +48,13 @@ function upsert(obj, callBack) {
 
 function get(id, callBack) {
     let aCb = new StdCallBack(callBack);
-    console.log('getNote');
+    console.log('getNotexxx ' + id);
+    const bla = {id};
+    console.log(bla)
+
     db.notes.find({id}, (err, result) => {
+        console.log('result')
+        console.log(result)
         callBack(err, result ? result[0] : null);
     });
 

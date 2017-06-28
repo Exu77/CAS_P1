@@ -7,7 +7,7 @@ class NotesStorage {
     }
 
     static get(id) {
-        return HttpHelper.get('/notes?id=' + id);
+        return HttpHelper.get('/notes/' + id);
     }
 
     static store(aItem) {
