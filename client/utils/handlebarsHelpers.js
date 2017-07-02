@@ -13,7 +13,5 @@ Handlebars.registerHelper("fromNow", (aDate) => {
 });
 
 Handlebars.registerHelper("inputDate", (aDate) => {
-    console.log('helper inputDate')
-    console.log(aDate)
     return moment(aDate).format('YYYY-MM-DDTHH:mm:ss');
 });
